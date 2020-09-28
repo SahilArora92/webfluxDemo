@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
+//SpringMVC style code
 @RestController
 @RequestMapping(value="/profiles", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProfileRestController {
@@ -27,7 +28,9 @@ public class ProfileRestController {
     Publisher<Profile> getById(@PathVariable("id") String id) {
         return this.profileRepository.get(id);
     }
-
+//	This method supports creating a new Profile with an HTTP POST action.
+//	In this handler method we expect incoming requests to have a JSON body that the framework then marshals into a Java object, Profile.
+//	This happens automatically based on the content-type of the incoming request and the configured, acceptable, convertible payloads supported by Spring WebFlux.
     @PostMapping
     Publisher<ResponseEntity<Profile>> create(@RequestBody Profile profile){
         return this.profileRepository
