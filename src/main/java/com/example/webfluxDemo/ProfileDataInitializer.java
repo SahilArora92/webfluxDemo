@@ -25,7 +25,7 @@ public class ProfileDataInitializer implements ApplicationListener<ApplicationRe
                 //we use Reactor’s Flux<T>.just(T..) factory method to create a new Publisher with a static list of String records, in-memory.
                 .thenMany(
                         Flux.just("A","B","C","D")
-                        .map(name -> new com.example.webfluxDemo.Profile(UUID.randomUUID().toString(), name + "@email.com"))
+                        .map(name -> new com.example.webfluxDemo.Profile(UUID.randomUUID().toString(), name + "@email.com", name))
                         .flatMap(repository::save)
                 )
                 .thenMany(repository.findAll())
